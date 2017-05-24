@@ -13,8 +13,15 @@ class Command {
 
 	get valid () {
 		switch (this.type) {
-			case FILL: if (this.line + this.size >= lines || this.col + this.size >= cols) return false;
-			case ERASE: if (this.line >= lines || this.cols >= cols) return false; break;
+			case FILL:
+				if (this.line + this.size >= lines || this.col + this.size >= cols) {
+					return false;
+				}
+			case ERASE:
+				if (this.line >= lines || this.cols >= cols || this.line < 0 || this.col < 0) {
+					return false;
+				}
+				break;
 			default: return false;
 		}
 		return true;
