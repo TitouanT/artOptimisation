@@ -1,6 +1,5 @@
 // my way of doing enum{FILL, ERASE}
-const FILL = 0;
-const ERASE = 1;
+const [FILL, ERASE] = [0, 1];
 
 class Command {
 	constructor (type, line, col, size = 1) {
@@ -14,7 +13,7 @@ class Command {
 	get valid () {
 		switch (this.type) {
 			case FILL:
-				if (this.line + this.size >= lines || this.col + this.size >= cols) {
+				if (this.line + this.size > lines || this.col + this.size > cols) {
 					return false;
 				}
 			case ERASE:
