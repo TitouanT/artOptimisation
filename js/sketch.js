@@ -3,6 +3,8 @@ let grid;
 let solution;
 let lineClicked;
 let colClicked;
+let prevLine_Mouse;
+let prevCol_Mouse;
 
 const lines = 600;
 const cols = 800;
@@ -34,6 +36,7 @@ function setup() {
 	updateView(0);
 	noLoop();
 	consoleWelcome();
+	[prevLine_Mouse, prevCol_Mouse] = grid.mouseAt;
 }
 
 function draw() {
@@ -112,6 +115,20 @@ function mouseClicked () {
 	}
 	redraw();
 	return false;
+}
+
+function mouseMoved () {
+	let [l, c] = grid.mouseAt;
+
+	if ((l != prevLine_Mouse || c != prevCol_Mouse) && (lineClicked != -1 && colClicked != -1)) {
+		prevLine_Mouse = l;
+		prevCol_Mouse = c;
+		redraw();
+	}
+
+
+
+
 }
 
 
