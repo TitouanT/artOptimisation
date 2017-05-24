@@ -30,8 +30,7 @@ class Grid {
 	}
 
 	show () {
-		let h, w;
-		[h, w] = this.cellSize;
+		let [h, w] = this.cellSize;
 		let bg = color(100);
 		noStroke();
 		// redraw the all thing
@@ -56,11 +55,17 @@ class Grid {
 				rect (start * w, i * h, w * (colsView - start), h);
 			}
 		}
-		for (let i = 0; i < linesView; i++) {
-			for (let j = 0; j < colsView; j++) {
-				if (this.ans[i + topLine][j + topCol] > 0) {
-					fill (255, 0, 0);
-					rect (j * w + w / 4, i * h + h / 4, w/2, h/2);
+
+		// draw a red square in every marked cell
+		fill (255, 0, 0);
+		let w_4 = floor(w/4), h_4 = floor(h/4), w_2 = floor(w/2), h_2 = floor(h/2);
+		if (w_2 >= 1 && h_2 >= 1) {
+
+			for (let i = 0; i < linesView; i++) {
+				for (let j = 0; j < colsView; j++) {
+					if (this.ans[i + topLine][j + topCol] > 0) {
+						rect (j * w + w_4, i * h + h_4, w_2, h_2);
+					}
 				}
 			}
 		}
