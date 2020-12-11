@@ -78,7 +78,7 @@ function windowResized () {
 }
 
 
-function mouseClicked () {
+function mousePressed () {
 	let l, c;
 	[l, c] = grid.mouseAt;
 	if (l === -1 || c === -1) return;
